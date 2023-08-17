@@ -8,8 +8,17 @@ const SigUp =()=>{
     const [phoneNumber, setNumber] = useState("")
     const [password, setPassword] = useState("")
 
-    const collectData =()=>{
+    const collectData =async()=>{
         console.log(firstName, lastName,dateOfBirth,email,phoneNumber,password)
+        let result = await fetch('http://localhost:9000/register',{
+            method:'post',
+            body: JSON.stringify({firstName,lastName,dateOfBirth,email,phoneNumber,password}),
+            headers:{
+                'content-type':'application/json'
+            },
+        })
+        result = await result.json()
+        console.warn(result)
     }
     return(
         <div className="register">
